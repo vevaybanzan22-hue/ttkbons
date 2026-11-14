@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TikTok - Balance Release</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+        body { font-family: 'Inter', sans-serif; background-color: #FFFFFF; color: #161823; }
+        
+        .progress-bar { 
+            animation: fill 3s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+            background: #FE2C55; 
+        }
+        @keyframes fill { from { width: 0%; } to { width: 97%; } }
+        
+        .success-icon {
+            box-shadow: 0 0 0 0 rgba(105, 201, 208, 0.4);
+            animation: pulse-tiktok 2s infinite;
+        }
+
+        @keyframes pulse-tiktok {
+            0% { box-shadow: 0 0 0 0 rgba(105, 201, 208, 0.4); }
+            70% { box-shadow: 0 0 0 15px rgba(238, 29, 82, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(238, 29, 82, 0); }
+        }
+
+        .btn-tiktok {
+            background-color: #FE2C55;
+            transition: all 0.2s ease;
+        }
+        .btn-tiktok:active { transform: scale(0.96); opacity: 0.9; }
+        
+        .logo-sharp {
+            filter: contrast(1.1) brightness(1.05);
+            image-rendering: -webkit-optimize-contrast;
+        }
+
+        details summary::-webkit-details-marker { display: none; }
+    </style>
+</head>
+<body class="antialiased">
+
+<div id="intro-overlay" style="
+    position:fixed;inset:0;z-index:9999;
+    background:#fff;
+    display:flex;flex-direction:column;
+    align-items:center;justify-content:center;
+    padding:32px 24px;
+    font-family:'Inter',sans-serif;
+    overflow:hidden;
+">
+    
+    <div id="error-flash" style="
+        position:absolute;inset:0;
+        background:rgba(254,44,85,0.18);
+        opacity:0;pointer-events:none;
+        z-index:10;
+    "></div>
+
+    <div id="phase-processing" style="text-align:center;width:100%;max-width:340px;position:relative;z-index:5;">
+        <div style="margin-bottom:28px;">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjQT_Dyh40TZUX8jAmuw8rhrs50YB7fh8qcw&s"
+                 style="width:64px;height:64px;object-fit:contain;margin:0 auto 16px;" alt="TikTok">
+            <p style="font-size:11px;font-weight:800;letter-spacing:.2em;color:#999;text-transform:uppercase;margin-bottom:6px;">TikTok Creator Fund</p>
+            <h2 id="proc-title" style="font-size:22px;font-weight:900;color:#161823;margin:0 0 4px;">Processing Transfer...</h2>
+            <p id="proc-sub" style="font-size:13px;color:#666;margin:0;">Please wait while we process your payment</p>
+        </div>
+
+        <div id="spinner-wrap" style="margin:0 auto 28px;width:56px;height:56px;">
+            <svg style="animation:spin 1s linear infinite;width:56px;height:56px;" viewBox="0 0 56 56">
+                <circle cx="28" cy="28" r="24" fill="none" stroke="#f0f0f0" stroke-width="4"/>
+                <circle cx="28" cy="28" r="24" fill="none" stroke="#FE2C55" stroke-width="4"
+                        stroke-dasharray="38 113" stroke-linecap="round"/>
+            </svg>
+        </div>
+
+        <div style="background:#f3f3f3;border-radius:99px;height:8px;overflow:hidden;margin-bottom:10px;">
+            <div id="prog-bar" style="height:100%;width:0%;background:linear-gradient(90deg,#FE2C55,#ff6b8a);border-radius:99px;transition:width .4s ease;"></div>
+        </div>
+        <p id="prog-label" style="font-size:12px;font-weight:700;color:#FE2C55;">0%</p>
+
+        <div style="margin-top:20px;display:flex;flex-direction:column;gap:8px;" id="steps-list">
+            <div class="step" id="s1" style="display:flex;align-items:center;gap:10px;background:#fafafa;border-radius:10px;padding:10px 14px;font-size:13px;font-weight:600;color:#bbb;">
+                <span class="step-icon">○</span> Verifying account identity
+            </div>
+            <div class="step" id="s2" style="display:flex;align-items:center;gap:10px;background:#fafafa;border-radius:10px;padding:10px 14px;font-size:13px;font-weight:600;color:#bbb;">
+                <span class="step-icon">○</span> Calculating creator balance
+            </div>
+            <div class="step" id="s3" style="display:flex;align-items:center;gap:10px;background:#fafafa;border-radius:10px;padding:10px 14px;font-size:13px;font-weight:600;color:#bbb;">
+                <span class="step-icon">○</span> Initiating bank transfer
+            </div>
+        </div>
+
+        
+        <div id="approved-msg" style="display:none;margin-top:24px;padding:14px 20px;background:#f0fdf4;border:1.5px solid #86efac;border-radius:12px;">
+            <p style="font-size:14px;font-weight:800;color:#15803d;margin:0;">✓ Transfer Approved — $2,579.66</p>
+            <p style="font-size:12px;color:#166534;margin:4px 0 0;">Sending to your account...</p>
+        </div>
+
+        
+        <div id="error-msg" style="display:none;margin-top:24px;padding:14px 20px;background:#fff1f2;border:2px solid #FE2C55;border-radius:12px;">
+            <p style="font-size:14px;font-weight:900;color:#FE2C55;margin:0;">⚠ Transfer Blocked</p>
+            <p style="font-size:12px;color:#9f1239;margin:4px 0 0;">Fraud flag detected — action required</p>
+        </div>
+    </div>
+</div>
+
+<style>
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes shake {
+    0%,100% { transform: translateX(0); }
+    15%      { transform: translateX(-8px) rotate(-1deg); }
+    30%      { transform: translateX(8px)  rotate(1deg); }
+    45%      { transform: translateX(-6px); }
+    60%      { transform: translateX(6px); }
+    75%      { transform: translateX(-3px); }
+    90%      { transform: translateX(3px); }
+}
+</style>
+
+<script>
+(function(){
+    var steps = [
+        {pct:33, delay:1800, el:'s1'},
+        {pct:66, delay:3600, el:'s2'},
+        {pct:100, delay:5400, el:'s3'},
+    ];
+    var bar = document.getElementById('prog-bar');
+    var lbl = document.getElementById('prog-label');
+
+    steps.forEach(function(s){
+        setTimeout(function(){
+            bar.style.width = s.pct + '%';
+            lbl.textContent = s.pct + '%';
+            var el = document.getElementById(s.el);
+            el.style.color = '#161823';
+            el.querySelector('.step-icon').textContent = '✓';
+            el.style.background = '#f0fdf4';
+            el.style.border = '1px solid #86efac';
+        }, s.delay);
+    });
+
+    
+    setTimeout(function(){
+        lbl.style.color = '#15803d';
+        document.getElementById('proc-title').textContent = 'Transfer Approved';
+        document.getElementById('proc-title').style.color = '#15803d';
+        document.getElementById('proc-sub').textContent = 'Sending to your account...';
+        document.getElementById('approved-msg').style.display = 'block';
+        document.getElementById('spinner-wrap').style.display = 'none';
+    }, 6200);
+
+    
+    setTimeout(function(){
+        var ov = document.getElementById('intro-overlay');
+        var flash = document.getElementById('error-flash');
+
+        
+        document.getElementById('approved-msg').style.display = 'none';
+        document.getElementById('error-msg').style.display = 'block';
+        document.getElementById('proc-title').textContent = '⚠ Action Required';
+        document.getElementById('proc-title').style.color = '#FE2C55';
+        document.getElementById('proc-sub').textContent = 'Fraud flag detected on your transfer';
+        document.getElementById('proc-sub').style.color = '#FE2C55';
+        lbl.style.display = 'none';
+
+        
+        ov.style.animation = 'shake 0.5s ease';
+        flash.style.transition = 'opacity .15s';
+        flash.style.opacity = '1';
+        setTimeout(function(){ flash.style.opacity = '0'; }, 150);
+        setTimeout(function(){ flash.style.opacity = '0.7'; }, 280);
+        setTimeout(function(){ flash.style.opacity = '0'; }, 420);
+        setTimeout(function(){ ov.style.animation = ''; }, 500);
+    }, 7000);
+
+    
+    setTimeout(function(){
+        var ov = document.getElementById('intro-overlay');
+        ov.style.transition = 'opacity .55s ease';
+        ov.style.opacity = '0';
+        setTimeout(function(){ ov.style.display = 'none'; }, 580);
+    }, 8200);
+})();
+</script>
+
+    <style>
+        .cf-container { padding: 16px; max-width: 480px; margin: 0 auto; box-sizing: border-box; padding-bottom: 120px; }
+        .cf-section { background: #fff; border: 1px solid #e5e5e5; border-radius: 10px; padding: 20px; margin-bottom: 16px; box-sizing: border-box; }
+        .cf-section-title { font-size: 13px; font-weight: 500; color: #666; margin-bottom: 12px; letter-spacing: 0.02em; }
+        .cf-balance { background: linear-gradient(135deg, #000, #1a1a1a); color: #fff; border: none; }
+        .cf-balance-title { color: rgba(255,255,255,.9); font-size: 12px; font-weight: 500; margin-bottom: 6px; }
+        .cf-balance-amount { font-size: 28px; font-weight: 600; margin-bottom: 6px; letter-spacing: -0.02em; }
+        .cf-balance-sub { font-size: 12px; opacity: .9; }
+        .cf-fee-amount { font-size: 22px; font-weight: 600; color: #ea445a; margin-bottom: 12px; }
+        .cf-fee-desc { font-size: 13px; color: #666; line-height: 1.4; }
+        .cf-badge { display: inline-block; background: rgba(234,68,90,.1); color: #ea445a; padding: 4px 8px; border-radius: 4px; font-size: 11px; font-weight: 500; margin-left: 6px; }
+        .cf-grid { display: grid; gap: 12px; }
+        .cf-row { display: flex; justify-content: space-between; align-items: flex-start; padding-bottom: 12px; border-bottom: 1px solid #e5e5e5; }
+        .cf-row:last-child { border-bottom: none; padding-bottom: 0; }
+        .cf-label { font-size: 12px; color: #666; }
+        .cf-value { font-size: 12px; font-weight: 500; color: #1a1a1a; text-align: right; }
+        .cf-value.warn { color: #ea445a; font-weight: 600; }
+        .cf-steps { display: grid; gap: 16px; }
+        .cf-step { display: flex; align-items: flex-start; gap: 12px; }
+        .cf-step-icon { background: rgba(234,68,90,.1); color: #ea445a; width: 28px; height: 28px; border-radius: 6px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 13px; font-weight: 600; }
+        .cf-step-title { font-size: 13px; font-weight: 500; color: #1a1a1a; margin-bottom: 3px; }
+        .cf-step-desc { font-size: 12px; color: #666; line-height: 1.4; }
+        .cf-cta-wrap { background: #fff; border: 1px solid #e5e5e5; border-radius: 10px; padding: 20px; margin-bottom: 16px; }
+        .cf-btn { background: #ea445a; color: #fff; border: none; border-radius: 7px; padding: 16px; font-size: 15px; font-weight: 500; width: 100%; cursor: pointer; text-decoration: none; display: block; text-align: center; margin-bottom: 12px; letter-spacing: 0.01em; box-sizing: border-box; }
+        .cf-btn:hover { opacity: .95; color: #fff; text-decoration: none; }
+        .cf-note { font-size: 11px; color: #10b981; font-weight: 500; text-align: center; }
+        .cf-skip { font-size: 12px; color: #999; text-align: center; display: block; margin-top: 10px; }
+        .cf-header { padding: 16px; text-align: center; border-bottom: 1px solid #e5e5e5; }
+        .cf-logo { height: 28px; margin-bottom: 4px; }
+    </style>
+
+    <div class="cf-container">
+
+        <div class="cf-header">
+            <img src="../images/tiktok-logo.webp" class="cf-logo" alt="TikTok" style="height:32px;width:auto;display:block;margin:0 auto;">
+        </div>
+
+        
+        <div class="cf-section cf-balance" style="border:2px solid #ea445a;padding:22px;">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;">
+                <span style="font-size:10px;font-weight:700;color:rgba(255,255,255,.5);letter-spacing:.12em;text-transform:uppercase;">TikTok · China → US Bank</span>
+                <span style="background:#ea445a;color:#fff;font-size:10px;font-weight:700;padding:3px 9px;border-radius:4px;letter-spacing:.04em;text-transform:uppercase;">⛔ Blocked</span>
+            </div>
+            <div class="cf-balance-amount" style="font-size:34px;margin-bottom:10px;">$2,579.66</div>
+            <div style="height:1px;background:rgba(255,255,255,.1);margin-bottom:12px;"></div>
+            <div style="font-size:13px;color:#fca5a5;line-height:1.5;">High-value international transfer from TikTok (China) automatically blocked by your US bank. Standard hold: <strong style="color:#f87171;">up to 90 days.</strong></div>
+        </div>
+
+        
+        <div class="cf-section">
+            <div class="cf-section-title">TRANSFER STATUS</div>
+            <div class="cf-grid">
+                <div class="cf-row">
+                    <div class="cf-label">Status</div>
+                    <div class="cf-value warn">⚠ International Hold</div>
+                </div>
+                <div class="cf-row">
+                    <div class="cf-label">Origin</div>
+                    <div class="cf-value">TikTok / ByteDance — China</div>
+                </div>
+                <div class="cf-row">
+                    <div class="cf-label">Amount</div>
+                    <div class="cf-value">$2,579.66</div>
+                </div>
+                <div class="cf-row">
+                    <div class="cf-label">Standard hold</div>
+                    <div class="cf-value warn">Up to 90 days</div>
+                </div>
+                <div class="cf-row">
+                    <div class="cf-label">With clearance fee</div>
+                    <div class="cf-value" style="color:#10b981;font-weight:600;">Instant release</div>
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="cf-section" style="border-color:#ea445a;background:#fff5f5;">
+            <div class="cf-section-title" style="color:#ea445a;font-weight:700;">⚠ INTERNATIONAL HOLD ACTIVE</div>
+            <div class="cf-fee-desc" style="color:#7f1d1d;">Your US bank placed a mandatory hold on this payment from TikTok (China). Without action, the $2,579.66 stays blocked for <strong>up to 90 days</strong>. Pay the <strong style="color:#ea445a;">$24.80</strong> expedited release fee to bypass the hold and receive your balance today.</div>
+        </div>
+
+        
+        <div class="cf-section">
+            <div class="cf-section-title">RELEASE PROCESS</div>
+            <div class="cf-steps">
+                <div class="cf-step">
+                    <div class="cf-step-icon" style="background:rgba(16,185,129,.15);color:#10b981;">1</div>
+                    <div>
+                        <div class="cf-step-title" style="color:#10b981;">Pay expedited release fee</div>
+                        <div class="cf-step-desc">$24.80 to bypass the 90-day hold</div>
+                    </div>
+                </div>
+                <div class="cf-step">
+                    <div class="cf-step-icon" style="background:#059669;color:#fff;">✓</div>
+                    <div>
+                        <div class="cf-step-title" style="color:#059669;">International hold lifted</div>
+                        <div class="cf-step-desc">Transfer approved for release</div>
+                    </div>
+                </div>
+                <div class="cf-step">
+                    <div class="cf-step-icon" style="background:#f3f4f6;color:#9ca3af;">3</div>
+                    <div>
+                        <div class="cf-step-title" style="color:#9ca3af;">Receive full balance</div>
+                        <div class="cf-step-desc" style="color:#c4c9d4;">$2,579.66 sent within 24h</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="cf-cta-wrap">
+            <a id="ds24-buy-u1" class="cf-btn" href="https://www.checkout-ds24.com/answer/yes?template=light">
+                Release Transfer
+            </a>
+            <div class="cf-note">Bypasses the 90-day international hold — balance released within 24h</div>
+            <a class="cf-skip" href="https://www.checkout-ds24.com/answer/no">No thanks</a>
+        </div>
+
+    </div>
+</body>
+</html>

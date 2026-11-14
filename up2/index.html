@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>TikTok Bonus — Compliance Hold</title>
+<style>
+    
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'TikTokFont', system-ui, sans-serif; background: #f5f5f5; color: #1a1a1a; }
+
+    .cf-container { padding: 16px; max-width: 480px; margin: 0 auto; box-sizing: border-box; padding-bottom: 40px; }
+    .cf-section { background: #fff; border: 1px solid #e5e5e5; border-radius: 10px; padding: 20px; margin-bottom: 16px; box-sizing: border-box; }
+    .cf-section-title { font-size: 13px; font-weight: 500; color: #666; margin-bottom: 12px; letter-spacing: 0.02em; }
+    .cf-balance { background: linear-gradient(135deg, #000, #1a1a1a); color: #fff; border: none; }
+    .cf-balance-amount { font-size: 34px; font-weight: 600; margin-bottom: 10px; letter-spacing: -0.02em; }
+    .cf-grid { display: grid; gap: 12px; }
+    .cf-row { display: flex; justify-content: space-between; align-items: flex-start; padding-bottom: 12px; border-bottom: 1px solid #e5e5e5; }
+    .cf-row:last-child { border-bottom: none; padding-bottom: 0; }
+    .cf-label { font-size: 12px; color: #666; }
+    .cf-value { font-size: 12px; font-weight: 500; color: #1a1a1a; text-align: right; }
+    .cf-value.warn { color: #EE1D52; font-weight: 600; }
+    .cf-value.ok { color: #10b981; font-weight: 600; }
+    .cf-steps { display: grid; gap: 16px; }
+    .cf-step { display: flex; align-items: flex-start; gap: 12px; }
+    .cf-step-icon { width: 28px; height: 28px; border-radius: 6px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 13px; font-weight: 600; }
+    .cf-step-title { font-size: 13px; font-weight: 500; margin-bottom: 3px; }
+    .cf-step-desc { font-size: 12px; color: #666; line-height: 1.4; }
+    .cf-btn { background: #EE1D52; color: #fff; border: none; border-radius: 7px; padding: 16px; font-size: 15px; font-weight: 500; width: 100%; cursor: pointer; text-decoration: none; display: block; text-align: center; margin-bottom: 12px; letter-spacing: 0.01em; }
+    .cf-btn:hover { opacity: .95; color: #fff; text-decoration: none; }
+    .cf-note { font-size: 11px; color: #10b981; font-weight: 500; text-align: center; }
+    .cf-skip { font-size: 12px; color: #999; text-align: center; display: block; margin-top: 10px; text-decoration: underline; }
+    .cf-header { padding: 16px; text-align: center; background: #fff; border-bottom: 1px solid #e5e5e5; margin-bottom: 16px; border-radius: 10px; }
+</style>
+</head>
+<body>
+
+<div class="cf-container">
+
+    
+    <div class="cf-header">
+        <img src="../images/tiktok-logo.webp" alt="TikTok" style="height:32px;width:auto;display:block;margin:0 auto;">
+    </div>
+
+    
+    <div class="cf-section cf-balance" style="border:2px solid #f59e0b;">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;">
+            <span style="font-size:10px;font-weight:700;color:rgba(255,255,255,.5);letter-spacing:.12em;text-transform:uppercase;">International hold cleared ✓</span>
+            <span style="background:#f59e0b;color:#fff;font-size:10px;font-weight:700;padding:3px 9px;border-radius:4px;letter-spacing:.04em;text-transform:uppercase;">⚠ Hold Active</span>
+        </div>
+        <div class="cf-balance-amount">$2,579.66</div>
+        <div style="height:1px;background:rgba(255,255,255,.1);margin-bottom:12px;"></div>
+        <div style="font-size:13px;color:#fde68a;line-height:1.5;">Your bank cleared the international hold — but automatically applied a <strong style="color:#fef3c7;">Compliance Monitoring Period</strong> due to the prior flag. Standard wait: <strong style="color:#fef3c7;">5–7 business days.</strong></div>
+    </div>
+
+    
+    <div class="cf-section">
+        <div class="cf-section-title">TRANSFER STATUS</div>
+        <div class="cf-grid">
+            <div class="cf-row">
+                <div class="cf-label">International hold</div>
+                <div class="cf-value ok">✓ Cleared</div>
+            </div>
+            <div class="cf-row">
+                <div class="cf-label">Compliance hold</div>
+                <div class="cf-value warn">⚠ Active</div>
+            </div>
+            <div class="cf-row">
+                <div class="cf-label">Amount</div>
+                <div class="cf-value">$2,579.66</div>
+            </div>
+            <div class="cf-row">
+                <div class="cf-label">Standard wait</div>
+                <div class="cf-value warn">5–7 business days</div>
+            </div>
+            <div class="cf-row">
+                <div class="cf-label">With bypass fee</div>
+                <div class="cf-value ok">Released today</div>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="cf-section" style="border-color:#f59e0b;background:#fffbeb;">
+        <div class="cf-section-title" style="color:#b45309;font-weight:700;">⚠ COMPLIANCE HOLD ACTIVE</div>
+        <div style="font-size:13px;color:#78350f;line-height:1.5;">After clearing an international transfer flag, your bank applies a mandatory <strong>Compliance Monitoring Period</strong>. Pay the <strong style="color:#EE1D52;">$47.90</strong> bypass fee to lift the hold and receive your $2,579.66 today.</div>
+    </div>
+
+    
+    <div class="cf-section">
+        <div class="cf-section-title">RELEASE PROCESS</div>
+        <div class="cf-steps">
+            <div class="cf-step">
+                <div class="cf-step-icon" style="background:rgba(16,185,129,.15);color:#10b981;">✓</div>
+                <div>
+                    <div class="cf-step-title" style="color:#10b981;">International hold cleared</div>
+                    <div class="cf-step-desc">Fraud flag removed — transfer approved</div>
+                </div>
+            </div>
+            <div class="cf-step">
+                <div class="cf-step-icon" style="background:rgba(238,29,82,.15);color:#EE1D52;">2</div>
+                <div>
+                    <div class="cf-step-title" style="color:#EE1D52;">Pay compliance bypass fee</div>
+                    <div class="cf-step-desc">$47.90 to lift the monitoring hold</div>
+                </div>
+            </div>
+            <div class="cf-step">
+                <div class="cf-step-icon" style="background:#f3f4f6;color:#9ca3af;">3</div>
+                <div>
+                    <div class="cf-step-title" style="color:#9ca3af;">Receive full balance</div>
+                    <div class="cf-step-desc" style="color:#c4c9d4;">$2,579.66 released today</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="cf-section">
+        <a id="ds24-buy-u2" class="cf-btn" href="https://www.checkout-ds24.com/answer/yes?template=light">
+            Bypass Compliance Hold
+        </a>
+        <div class="cf-note">Hold lifted — balance released within 24h</div>
+        <a class="cf-skip" href="https://www.checkout-ds24.com/answer/no">No thanks — wait 5–7 business days</a>
+    </div>
+
+</div>
+</body>
+</html>
