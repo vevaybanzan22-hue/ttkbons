@@ -1,0 +1,6 @@
+.git
+.gitignore
+.htaccess
+server.mjs
+wrangler.jsonc
+vercel.json
