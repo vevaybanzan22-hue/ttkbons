@@ -1,0 +1,13 @@
+{
+  "rewrites": [
+    { "source": "/up1", "destination": "/up1/index.html" },
+    { "source": "/up1/", "destination": "/up1/index.html" },
+    { "source": "/up2", "destination": "/up2/index.html" },
+    { "source": "/up2/", "destination": "/up2/index.html" },
+    { "source": "/thankyou", "destination": "/thankyou/index.html" },
+    { "source": "/thankyou/", "destination": "/thankyou/index.html" },
+    { "source": "/live", "destination": "/live.html" },
+    { "source": "/saque", "destination": "/saque.html" },
+    { "source": "/(.*)", "destination": "/index.html" }
+  ]
+}

