@@ -1,0 +1,21 @@
+/* Extra SVG canvas holds the entire open lid, including WebKit paint bounds.
+   The artwork remains at its previous scale; only transparent canvas grows. */
+.bonus-chest{--chest-paint-unit:.5416666667px;overflow:visible}
+.days .day.today>.bonus-chest{--chest-paint-unit:.484375px}
+.bonus-chest>.treasure-chest,.days .day.today>.bonus-chest>.treasure-chest{
+ position:absolute;
+ left:calc(-16 * var(--chest-paint-unit));
+ top:calc(-40 * var(--chest-paint-unit));
+ width:calc(104 * var(--chest-paint-unit));
+ height:calc(112 * var(--chest-paint-unit));
+ max-width:none;
+ max-height:none;
+ overflow:visible;
+ filter:none;
+ pointer-events:none;
+}
+
+/* Center the artwork itself, preserving the extra canvas for the lid. */
+.days .day.today>.bonus-chest{--chest-paint-unit:.36px;position:relative;width:100%;height:28px;transform:none}
+.days .day.today>.bonus-chest>.treasure-chest{position:absolute;left:calc(50% - 52 * var(--chest-paint-unit));top:calc(50% - 72 * var(--chest-paint-unit));width:calc(104 * var(--chest-paint-unit));height:calc(112 * var(--chest-paint-unit));transform:none}
+.completion-dialog .completion-bonus-day.bonus-revealed .completion-day-art{translate:-14px 4px}

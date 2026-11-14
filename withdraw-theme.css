@@ -1,0 +1,100 @@
+/* Local IDV variant: palette shared with withdrawal screens. */
+body{background:#f1f1f1;color:#191919}
+.page:before{background:#f1f1f1}
+.rewards-wallpaper{background:radial-gradient(ellipse at 15% 10%,#ffeaf0,transparent 55%),#f1f1f1}
+.rewards-wallpaper:before{opacity:.15}
+.balance,.tasks,.withdraw-card{background:#fff;box-shadow:none}
+.balance:before{background:#fff;clip-path:none}
+.balance:after{display:none}
+.balance>.hero-coin{display:none}
+.balance .balance-header{padding-right:0}
+.balance .balance-total .balance-withdraw-row>strong,.completion-dialog .completion-amount #completionDollars,.completion-dialog.bonus-impact[open] #completionDollars,.balance-value-flight{color:#fe2c55;background:none;-webkit-text-stroke:0;filter:none}
+.completion-card .completion-congratulations{color:#fe2c55}
+.completion-dialog .completion-card{background:linear-gradient(165deg,#fff1f5,#fff 28%)}
+.redeem,.withdraw-button,.completion-dialog .completion-ok{background:#fe2c55;color:#fff;border-color:transparent;box-shadow:none;text-shadow:none}
+.redeem:hover,.withdraw-button:hover,.completion-dialog .completion-ok:hover{background:#ed2049}
+.redeem:before,.withdraw-button:before{background:none}
+.task-heading{background:#fff}.task-heading h1{color:#191919}.task-heading p{color:#999}
+.hero-coin:after{opacity:.2}
+.completion-dialog .completion-points,.completion-dialog .completion-points strong,.reward,.withdraw-amount,.withdraw-eyebrow{color:#fe2c55}
+.balance .week-earnings strong{color:#444}
+.bonus-expiry,.withdraw-card .bonus-expiry{background:#fff0f4;color:#b53b55;border-color:#ffd0dc}
+.completion-days .completion-day{background:#f4f4f4}
+.completion-days .completion-day.is-complete{background:linear-gradient(145deg,#fff0f4,#ffdbe4);box-shadow:inset 0 0 0 1px #ffa9bd}
+.completion-day .completion-day-check{background:linear-gradient(145deg,#ff8fa8,#fe2c55);color:#fff;box-shadow:none;border-color:#ffb2c4}
+.completion-days .completion-bonus-day:not(.bonus-revealed){background:#f1f1f1;box-shadow:inset 0 0 0 1px #e5e5e5}
+.completion-days .completion-bonus-day.bonus-revealed{background:linear-gradient(145deg,#fff0f4,#ffdbe4);box-shadow:inset 0 0 0 1px #ffa9bd}
+.completion-bonus-day.bonus-revealed>strong,.completion-bonus-day.bonus-revealed .completion-day-label,.completion-bonus-day.bonus-revealed .bonus-day-tag,.completion-bonus-day.bonus-revealed .bonus-day-caption{color:#c6294a;text-shadow:none}
+.days .day.completed{background:#f5f5f5}.days .day.completed.today{background:#fff0f4}.days .day.today>strong{color:#fe2c55}
+.bonus-flight.dramatic-multiplier{background:linear-gradient(150deg,#ffe0e8,#ff90aa 24%,#fe2c55 48%,#ffa9be 65%,#e51c45);background-clip:text;-webkit-background-clip:text;color:transparent;-webkit-text-stroke:1px #ffb8c9;filter:drop-shadow(0 3px 0 #bd1638) drop-shadow(0 6px 0 #8e1930)}
+
+/* Override legacy ID selectors and nested timer colors. */
+body .balance-withdraw-row>#balanceEquivalent,body .withdraw-card .withdraw-amount>strong{color:#fe2c55;background:none;-webkit-text-fill-color:#fe2c55}
+body .balance:before,body .task-heading,body .withdraw-card{background:#fff;box-shadow:none;border-color:#e8e8e8}
+body .rewards-wallpaper{background:#f1f1f1}
+body .rewards-wallpaper:before{background:none}
+body .page:before{background:#f1f1f1}
+body .balance>.bonus-expiry,body .withdraw-card>.bonus-expiry,body .bonus-expiry.is-urgent,body .bonus-expiry.is-expired{background:#fff0f4;border-color:#ffd0dc;color:#c6294a}
+body .bonus-expiry>strong,body .bonus-expiry>.bonus-expiry-label,body .bonus-expiry>svg{color:#c6294a}
+body .withdraw-card h2{color:#191919}body .withdraw-card .withdraw-points,body .withdraw-card .withdraw-warning{color:#777}body .withdraw-card .withdraw-warning strong{color:#444}
+body .completion-dialog .completion-card{background:linear-gradient(165deg,#fff1f5,#fff 28%)}
+body .completion-dialog .completion-day.is-complete>strong,body .completion-dialog .completion-day.is-complete>.completion-day-label{color:#b52a48}
+body .withdraw-timer{background:#fff0f4;color:#c6294a}
+body .checkin .checkin-top .reward{color:#fe2c55}
+
+/* Restore the original folded corner and gold coin on the balance card. */
+body .balance{background:transparent}
+body .balance:before{background:radial-gradient(ellipse at 100% 0%,#fff0a180 0%,#fff6cd66 22%,#fffbe933 38%,transparent 60%),#fff;clip-path:polygon(0 0,calc(100% - 64px) 0,100% 64px,100% 100%,0 100%)}
+body .balance:after{display:block;width:64px;height:64px}
+body .balance>.hero-coin{display:inline-grid}
+body .balance>.hero-coin:after{opacity:1}
+body .balance .balance-header{padding-right:88px}
+@media(max-width:350px){body .balance .balance-header{padding-right:76px}}
+@media(min-width:640px){body .balance .balance-header{padding-right:100px}}
+/* Flat surfaces, with pink reserved for primary actions and small accents. */
+body .completion-dialog .completion-card{background:#fff}
+body .completion-days .completion-day,body .completion-days .completion-day.is-complete{background:#f5f5f5;border:1px solid #e8e8e8;box-shadow:none}
+body .completion-dialog .completion-day.is-complete>strong,body .completion-dialog .completion-day.is-complete>.completion-day-label{color:#555}
+body .completion-day .completion-day-check{background:#fe2c55;border:0;box-shadow:none;color:#fff}
+body .completion-days .completion-bonus-day:not(.bonus-revealed){background:#f2f2f2;border:1px solid #e4e4e4;box-shadow:none}
+body .completion-days .completion-bonus-day.bonus-revealed{background:#f5f5f5;border:1px solid #e4e4e4;box-shadow:none}
+body .completion-bonus-day.bonus-revealed>strong{color:#191919;text-shadow:none}
+body .completion-bonus-day.bonus-revealed .completion-day-label,body .completion-bonus-day.bonus-revealed .bonus-day-tag,body .completion-bonus-day.bonus-revealed .bonus-day-caption{color:#777}
+body .balance:before{background:#fff}
+body .balance .balance-total>.balance-congratulations{font-size:18px;line-height:1.35;font-weight:600;letter-spacing:-.15px;margin-bottom:14px}
+body .bonus-expiry,body .balance>.bonus-expiry,body .withdraw-card>.bonus-expiry{background:#f5f5f5;border-color:#e8e8e8;color:#666}
+body .bonus-expiry>strong,body .bonus-expiry>.bonus-expiry-label,body .bonus-expiry>svg{color:#666}
+body .bonus-expiry>strong{color:#fe2c55}
+body .bonus-flight.dramatic-multiplier{background:none;color:#fe2c55;-webkit-text-stroke:0;filter:none;text-shadow:none}
+body .days .day.completed.today{background:#f5f5f5}
+@media(max-width:350px){body .balance .balance-total>.balance-congratulations{font-size:17px}}
+/* Neutral backdrop behind the reward dialog. */
+body .completion-dialog::backdrop{background:rgba(0,0,0,.55);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
+body:has(.completion-dialog[open]) .rewards-wallpaper{background:#f1f1f1}
+body:has(.completion-dialog[open]) .rewards-wallpaper>*{opacity:0}
+body .bonus-hero-stage:before{background:rgba(0,0,0,.5)}body .balance .balance-total>.balance-congratulations{font-size:23px;line-height:1.25;font-weight:700;letter-spacing:-.4px}
+@media(max-width:350px){body .balance .balance-total>.balance-congratulations{font-size:21px}}
+body .bonus-flight.dramatic-multiplier{background:linear-gradient(150deg,#ffe0e8 3%,#ff9ab2 20%,#fe2c55 37%,#ffe3eb 47%,#ff6688 54%,#cf123e 79%,#ffadc1 100%);background-clip:text;-webkit-background-clip:text;color:transparent;-webkit-text-stroke:1px #ffb8c9;filter:drop-shadow(0 3px 0 #bd1638) drop-shadow(0 6px 0 #8e1930) drop-shadow(0 7px 10px #7c163135);text-shadow:none}
+body .balance .balance-total>.balance-congratulations{font-size:clamp(17px,5.05vw,21px);font-weight:700;line-height:1.28;letter-spacing:-.35px;max-width:none}
+body .balance-congratulations>span{display:block;white-space:nowrap}
+@media(max-width:350px){body .balance .balance-total>.balance-congratulations{font-size:17px}}
+body .balance-congratulations .withdraw-copy-accent{font-style:normal;color:#fe2c55}
+body .completion-days .completion-bonus-day.bonus-revealed{padding:12px 11px;column-gap:8px;row-gap:5px;background:#fffdf6;border-color:#e6c776;box-shadow:none}
+body .completion-bonus-day.bonus-revealed .completion-day-label{font-size:10px;line-height:1.2;font-weight:600;color:#a17b25;letter-spacing:0}
+body .completion-bonus-day.bonus-revealed .bonus-day-tag{display:block;font-size:7px;font-weight:600;line-height:1.3;letter-spacing:.4px;color:#b3944d;margin-top:3px}
+body .completion-bonus-day.bonus-revealed>strong{display:flex;align-items:baseline;gap:4px;font-size:29px;font-weight:700;line-height:1;letter-spacing:-.8px;color:#c39422;text-shadow:none}
+body .completion-bonus-day.bonus-revealed .bonus-day-caption{font-size:9px;font-weight:400;line-height:1;letter-spacing:0;color:#a38c58;margin:0;max-width:none}
+@media(max-width:350px){body .completion-bonus-day.bonus-revealed>strong{font-size:25px}body .completion-days .completion-bonus-day.bonus-revealed{padding:10px 9px}}
+body .completion-dialog .completion-days .completion-bonus-day.bonus-revealed>strong{color:#c39422;-webkit-text-fill-color:#c39422}
+
+body .balance-withdraw-row{align-items:center}
+body .balance-withdraw-row>#balanceEquivalent{display:block;line-height:1;padding-block:3px}
+body .balance-withdraw-row>.redeem{display:inline-flex;align-items:center;justify-content:center;align-self:center;line-height:1;margin:0;translate:0 2px}
+body .balance-withdraw-row{gap:8px}
+.withdraw-direction{width:21px;height:21px;flex:none;fill:none;stroke:#fe2c55;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;animation:withdraw-direction-nudge 1.4s ease-in-out infinite}
+@keyframes withdraw-direction-nudge{0%,100%{transform:translateX(-2px)}50%{transform:translateX(3px)}}
+@media(max-width:350px){.withdraw-direction{width:16px;height:16px}body .balance-withdraw-row{gap:5px}}
+@media(prefers-reduced-motion:reduce){.withdraw-direction{animation:none}}
+/* Completed tasks remain readable but visually secondary. */
+body .task.completed-task .task-progress{opacity:.48}
+body .task.completed-task>.green:disabled{opacity:.5}
